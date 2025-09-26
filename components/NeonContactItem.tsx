@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   card: {
     backgroundColor: theme.colors.background.secondary,
     borderRadius: theme.borderRadius.lg,
-    marginBottom: theme.spacing.md,
+    marginBottom: theme.spacing.sm,
     borderWidth: 2,
     borderColor: theme.colors.border.light,
     ...getNeonGlow('#00FFFF', 'low'),

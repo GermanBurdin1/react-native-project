@@ -110,12 +110,39 @@ export default function HomeScreen({ navigation }: HomeScreenProps) {
 
         <View style={styles.section}>
           <Text style={styles.sectionTitle}>Contacts utiles</Text>
-          <FlatList
-            data={EMERGENCY_CONTACTS as Contact[]}
-            renderItem={renderContactItem}
-            keyExtractor={(contactItem) => contactItem.id}
-            scrollEnabled={false}
-          />
+          
+          {/* Urgence Contacts */}
+          <View style={styles.contactGroup}>
+            <Text style={[styles.groupTitle, styles.urgenceTitle]}>🚨 Urgences</Text>
+            <FlatList
+              data={EMERGENCY_CONTACTS.filter(contact => contact.type === 'Urgence') as Contact[]}
+              renderItem={renderContactItem}
+              keyExtractor={(contactItem) => contactItem.id}
+              scrollEnabled={false}
+            />
+          </View>
+
+          {/* Support Technique Contacts */}
+          <View style={styles.contactGroup}>
+            <Text style={[styles.groupTitle, styles.supportTitle]}>🔧 Support Technique</Text>
+            <FlatList
+              data={EMERGENCY_CONTACTS.filter(contact => contact.type === 'Support technique') as Contact[]}
+              renderItem={renderContactItem}
+              keyExtractor={(contactItem) => contactItem.id}
+              scrollEnabled={false}
+            />
+          </View>
+
+          {/* Administration Contacts */}
+          <View style={styles.contactGroup}>
+            <Text style={[styles.groupTitle, styles.adminTitle]}>📋 Administration</Text>
+            <FlatList
+              data={EMERGENCY_CONTACTS.filter(contact => contact.type === 'Administration') as Contact[]}
+              renderItem={renderContactItem}
+              keyExtractor={(contactItem) => contactItem.id}
+              scrollEnabled={false}
+            />
+          </View>
         </View>
       </ScrollView>
 
@@ -171,5 +198,27 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: theme.colors.primary[500],
     ...theme.shadows.neon,
+  },
+  contactGroup: {
+    marginBottom: theme.spacing['2xl'],
+  },
+  groupTitle: {
+    fontSize: theme.typography.fontSize.lg,
+    fontWeight: '600' as const,
+    marginBottom: theme.spacing.md,
+    paddingLeft: theme.spacing.md,
+    borderLeftWidth: 3,
+  },
+  urgenceTitle: {
+    color: theme.colors.error[500],
+    borderLeftColor: theme.colors.error[500],
+  },
+  supportTitle: {
+    color: theme.colors.primary[500],
+    borderLeftColor: theme.colors.primary[500],
+  },
+  adminTitle: {
+    color: theme.colors.success[500],
+    borderLeftColor: theme.colors.success[500],
   },
 });
